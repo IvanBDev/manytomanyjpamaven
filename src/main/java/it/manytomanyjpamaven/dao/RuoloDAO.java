@@ -8,6 +8,6 @@ public interface RuoloDAO extends IBaseDAO<Ruolo> {
 	
 	public Ruolo findByDescrizioneAndCodice(String descrizione, String codice) throws Exception;
 	
-	public List<Ruolo> findAllByDistinctDescriptionOfAssociateUsers() throws Exception;
+	public List<String> findAllByDistinctDescriptionOfAssociateUsers() throws Exception;
 
 }

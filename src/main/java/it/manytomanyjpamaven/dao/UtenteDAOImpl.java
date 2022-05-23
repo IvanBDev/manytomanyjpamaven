@@ -71,25 +71,26 @@ public class UtenteDAOImpl implements UtenteDAO {
 	}
 
 	@Override
-	public List<Utente> findAllByDateOfJune2021(Date dataInput) throws Exception {
+	public List<Utente> findAllByDateOfJune2021() throws Exception {
+		// TODO Auto-generated method stub
+		TypedQuery<Utente> query = entityManager.createQuery("FROM utente u WHERE u.dateCreated BETWEEN '2021-06-01' AND '2021-07-01'", Utente.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Utente> countAllUsersWithStatusAdmin() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Utente> countAllUsersWithStatusAdmin(StatoUtente statoInput) throws Exception {
+	public List<Utente> findAllUsersWithPasswordLenghtEqualsTo8Characters() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Utente> findAllUsersWithPasswordLenghtEqualsTo8Characters(String password) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Utente> findAllUsersWithStatusDisabledIfThereAreAdmins(StatoUtente statoInput) throws Exception {
+	public List<Utente> findAllUsersWithStatusDisabledIfThereAreAdmins() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -13,12 +13,12 @@ public interface UtenteDAO extends IBaseDAO<Utente> {
 	
 	public Utente findByIdFetchingRuoli(Long id);
 	
-	public List<Utente> findAllByDateOfJune2021(Date dataInput) throws Exception;
+	public List<Utente> findAllByDateOfJune2021() throws Exception;
 	
-	public List<Utente> countAllUsersWithStatusAdmin(StatoUtente statoInput) throws Exception;
+	public List<Utente> countAllUsersWithStatusAdmin() throws Exception;
 	
-	public List<Utente> findAllUsersWithPasswordLenghtEqualsTo8Characters(String password) throws Exception;
+	public List<Utente> findAllUsersWithPasswordLenghtEqualsTo8Characters() throws Exception;
 	
-	public List<Utente> findAllUsersWithStatusDisabledIfThereAreAdmins(StatoUtente statoInput) throws Exception;
+	public List<Utente> findAllUsersWithStatusDisabledIfThereAreAdmins() throws Exception;
 
 }

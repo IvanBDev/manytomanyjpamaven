@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.mysql.cj.Query;
+
 import it.manytomanyjpamaven.model.Ruolo;
 
 public class RuoloDAOImpl implements RuoloDAO {
@@ -65,10 +67,11 @@ public class RuoloDAOImpl implements RuoloDAO {
 	}
 
 	@Override
-	public List<Ruolo> findAllByDistinctDescriptionOfAssociateUsers() throws Exception {
+	public List<String> findAllByDistinctDescriptionOfAssociateUsers() throws Exception {
 		// TODO Auto-generated method stub
-		TypedQuery<Ruolo> qury = entityManager.createQuery("SELECT DISTINCT r.descrizione FROM Ruolo r  LEFT JOIN r.utente u", Ruolo.class);
-		return qury.getResultList();
+		Query query = (Query) entityManager.createNativeQuery("SELECT DISTINCT r.descrizione FROM ruolo r INNER JOIN utente_ruolo ur ON r.id = ur.ruolo_id JOIN utente u ON u.id = ur.utente_id;");
+		
+		return null;
 	}
 
 }

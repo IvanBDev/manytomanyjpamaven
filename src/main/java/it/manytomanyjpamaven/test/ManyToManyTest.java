@@ -29,8 +29,8 @@ public class ManyToManyTest {
 			//testInserisciNuovoUtente(utenteServiceInstance);
 			//System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
-			testCollegaUtenteARuoloEsistente(ruoloServiceInstance, utenteServiceInstance);
-			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
+			//testCollegaUtenteARuoloEsistente(ruoloServiceInstance, utenteServiceInstance);
+			//System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
 			//testModificaStatoUtente(utenteServiceInstance);
 			//System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
@@ -46,6 +46,9 @@ public class ManyToManyTest {
 			
 			//testRimuoviUtente(utenteServiceInstance, ruoloServiceInstance);
 
+			testListaDiTutteLeDescrizioniDegliUtentiAssociati(ruoloServiceInstance);
+			
+			
 		} catch (Throwable e) {
 			e.printStackTrace();
 		} finally {
@@ -219,6 +222,21 @@ public class ManyToManyTest {
 		utenteService.rimuovi(idUtenteDaEliminare);
 		
 		System.out.println(".......testRimuoviUtente fine: PASSED.............");
+	}
+	
+	public static void testListaDiTutteLeDescrizioniDegliUtentiAssociati(RuoloService ruoloService) throws Exception{
+		System.out.println(".......testListaDiTutteLeDescrizioniDegliUtentiAssociati inizio: .............");
+		
+		if(ruoloService.listAll().size() == 0) 
+			throw new RuntimeException("Non ci sono ruoli all'interno del DB");
+		
+		List<Ruolo> listaRuoli = ruoloService.listaDiTutteLeDescrizioniDegliUtentiAssociati();
+		for (Ruolo ruoloItem : listaRuoli) {
+			System.out.println(ruoloItem);
+		}
+		
+		
+		System.out.println(".......testListaDiTutteLeDescrizioniDegliUtentiAssociati fine: PASSED.............");
 	}
 
 }
