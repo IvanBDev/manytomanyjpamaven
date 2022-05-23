@@ -46,7 +46,7 @@ public class ManyToManyTest {
 			
 			//testRimuoviUtente(utenteServiceInstance, ruoloServiceInstance);
 
-			//testListaDiTutteLeDescrizioniDegliUtentiAssociati(ruoloServiceInstance);
+			testListaDiTutteLeDescrizioniDegliUtentiAssociati(ruoloServiceInstance);
 			
 			//testTrovaTuttiGliUtentiRegistratiAGiugno(utenteServiceInstance);
 			
@@ -54,7 +54,7 @@ public class ManyToManyTest {
 			
 			//testTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri(utenteServiceInstance);
 			
-			testTrovaTuttiGliUtentiConLoStatoDisabilitatoECheSonoAdmin(utenteServiceInstance);
+			//testTrovaTuttiGliUtentiConLoStatoDisabilitatoECheSonoAdmin(utenteServiceInstance);
 			
 			
 		} catch (Throwable e) {
@@ -238,10 +238,10 @@ public class ManyToManyTest {
 		if(ruoloService.listAll().size() == 0) 
 			throw new RuntimeException("Non ci sono ruoli all'interno del DB");
 		
-		//List<String> listaRuoli = null;
-		/*for (String ruoloItem : listaRuoli) {
+		List<String> listaRuoli = ruoloService.listaDiTutteLeDescrizioniDegliUtentiAssociati();
+		for (String ruoloItem : listaRuoli) {
 			System.out.println(ruoloItem);
-		}*/
+		}
 		
 		
 		System.out.println(".......testListaDiTutteLeDescrizioniDegliUtentiAssociati fine: PASSED.............");
