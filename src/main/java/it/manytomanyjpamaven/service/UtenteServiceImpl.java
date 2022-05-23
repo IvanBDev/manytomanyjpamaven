@@ -257,4 +257,25 @@ public class UtenteServiceImpl implements UtenteService {
 		}
 	}
 
+	@Override
+	public int contaQuantiUtentiConIlRuoloAdmin() throws Exception {
+		// TODO Auto-generated method stub
+		// questo è come una connection
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			utenteDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return utenteDAO.countAllUsersWithStatusAdmin();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+
 }

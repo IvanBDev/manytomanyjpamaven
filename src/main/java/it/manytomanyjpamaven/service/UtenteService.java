@@ -26,6 +26,8 @@ public interface UtenteService {
 	public Utente caricaUtenteSingoloConRuoli(Long id) throws Exception;
 	
 	public List<Utente> trovaTuttiGliUtentiRegistratiAGiugno() throws Exception;
+	
+	public int contaQuantiUtentiConIlRuoloAdmin() throws Exception;
 
 	// per injection
 	public void setUtenteDAO(UtenteDAO utenteDAO);
