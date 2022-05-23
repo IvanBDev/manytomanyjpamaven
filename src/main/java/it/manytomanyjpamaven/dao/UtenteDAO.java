@@ -18,5 +18,7 @@ public interface UtenteDAO extends IBaseDAO<Utente> {
 	public List<Utente> countAllUsersWithStatusAdmin(StatoUtente statoInput) throws Exception;
 	
 	public List<Utente> findAllUsersWithPasswordLenghtEqualsTo8Characters(String password) throws Exception;
+	
+	public List<Utente> findAllUsersWithStatusDisabledIfThereAreAdmins(StatoUtente statoInput) throws Exception;
 
 }
