@@ -15,7 +15,7 @@ public interface UtenteDAO extends IBaseDAO<Utente> {
 	
 	public List<Utente> findAllByDateOfJune2021() throws Exception;
 	
-	public List<Utente> countAllUsersWithStatusAdmin() throws Exception;
+	public int countAllUsersWithStatusAdmin() throws Exception;
 	
 	public List<Utente> findAllUsersWithPasswordLenghtEqualsTo8Characters() throws Exception;
 	

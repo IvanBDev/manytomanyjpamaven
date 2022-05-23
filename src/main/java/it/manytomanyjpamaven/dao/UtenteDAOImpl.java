@@ -78,9 +78,10 @@ public class UtenteDAOImpl implements UtenteDAO {
 	}
 
 	@Override
-	public List<Utente> countAllUsersWithStatusAdmin() throws Exception {
+	public int countAllUsersWithStatusAdmin() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Utente> query = entityManager.createQuery("SELECT u FROM Utente u INNER JOIN u.ruoli r WHERE r.descrizione = 'Administrator'", Utente.class);
+		return query.getResultList().size();
 	}
 
 	@Override
