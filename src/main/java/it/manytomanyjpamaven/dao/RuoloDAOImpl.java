@@ -69,9 +69,9 @@ public class RuoloDAOImpl implements RuoloDAO {
 	@Override
 	public List<String> findAllByDistinctDescriptionOfAssociateUsers() throws Exception {
 		// TODO Auto-generated method stub
-		Query query = (Query) entityManager.createNativeQuery("SELECT DISTINCT r.descrizione FROM ruolo r INNER JOIN utente_ruolo ur ON r.id = ur.ruolo_id JOIN utente u ON u.id = ur.utente_id;");
-		
-		return null;
+		String sqlQuery = "SELECT DISTINCT r.descrizione FROM ruolo r INNER JOIN utente_ruolo ur ON r.id = ur.ruolo_id";
+		List<String> result = entityManager.createNativeQuery(sqlQuery).getResultList();
+		return result;
 	}
 
 }
