@@ -46,7 +46,9 @@ public class ManyToManyTest {
 			
 			//testRimuoviUtente(utenteServiceInstance, ruoloServiceInstance);
 
-			testListaDiTutteLeDescrizioniDegliUtentiAssociati(ruoloServiceInstance);
+			//testListaDiTutteLeDescrizioniDegliUtentiAssociati(ruoloServiceInstance);
+			
+			//testTrovaTuttiGliUtentiRegistratiAGiugno(utenteServiceInstance);
 			
 			
 		} catch (Throwable e) {
@@ -230,13 +232,27 @@ public class ManyToManyTest {
 		if(ruoloService.listAll().size() == 0) 
 			throw new RuntimeException("Non ci sono ruoli all'interno del DB");
 		
-		List<Ruolo> listaRuoli = ruoloService.listaDiTutteLeDescrizioniDegliUtentiAssociati();
-		for (Ruolo ruoloItem : listaRuoli) {
+		//List<String> listaRuoli = null;
+		/*for (String ruoloItem : listaRuoli) {
 			System.out.println(ruoloItem);
-		}
+		}*/
 		
 		
 		System.out.println(".......testListaDiTutteLeDescrizioniDegliUtentiAssociati fine: PASSED.............");
+	}
+	
+	public static void testTrovaTuttiGliUtentiRegistratiAGiugno(UtenteService utenteService) throws Exception{
+		System.out.println(".......testTrovaTuttiGliUtentiRegistratiAGiugno inizio: .............");
+		
+		if(utenteService.listAll().size() == 0)
+			throw new RuntimeException("Non ci sono Utenti nel DB");
+		
+		List<Utente> listaUtente = utenteService.trovaTuttiGliUtentiRegistratiAGiugno();
+		for (Utente utenteItem : listaUtente) {
+			System.out.println(utenteItem.getId());
+		}
+		
+		System.out.println(".......testTrovaTuttiGliUtentiRegistratiAGiugno fine: PASSED.............");
 	}
 
 }

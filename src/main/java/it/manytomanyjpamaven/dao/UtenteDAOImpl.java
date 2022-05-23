@@ -73,7 +73,7 @@ public class UtenteDAOImpl implements UtenteDAO {
 	@Override
 	public List<Utente> findAllByDateOfJune2021() throws Exception {
 		// TODO Auto-generated method stub
-		TypedQuery<Utente> query = entityManager.createQuery("FROM utente u WHERE u.dateCreated BETWEEN '2021-06-01' AND '2021-07-01'", Utente.class);
+		TypedQuery<Utente> query = entityManager.createQuery("FROM Utente u WHERE u.dateCreated BETWEEN '2021-06-01' AND '2021-07-01'", Utente.class);
 		return query.getResultList();
 	}
 
