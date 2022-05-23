@@ -157,7 +157,22 @@ public class RuoloServiceImpl implements RuoloService {
 	@Override
 	public List<Ruolo> listaDiTutteLeDescrizioniDegliUtentiAssociati() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		// questo è come una connection
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+
+		try {
+			// uso l'injection per il dao
+			ruoloDAO.setEntityManager(entityManager);
+
+			// eseguo quello che realmente devo fare
+			return ruoloDAO.findAllByDistinctDescriptionOfAssociateUsers();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
 	}
 
 }
