@@ -52,7 +52,9 @@ public class ManyToManyTest {
 			
 			//testContaQuantiUtentiConIlRuoloAdmin(utenteServiceInstance);
 			
-			tesTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri(utenteServiceInstance);
+			//testTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri(utenteServiceInstance);
+			
+			testTrovaTuttiGliUtentiConLoStatoDisabilitatoECheSonoAdmin(utenteServiceInstance);
 			
 			
 		} catch (Throwable e) {
@@ -118,17 +120,17 @@ public class ManyToManyTest {
 		System.out.println(".......testModificaStatoUtente inizio.............");
 		
 		Date dataCreazione = null;
-		dataCreazione =  new SimpleDateFormat("dd/MM/yyyy").parse("12/07/2021");
+		dataCreazione =  new SimpleDateFormat("dd/MM/yyyy").parse("25/05/2021");
 
 		// mi creo un utente inserendolo direttamente su db
-		Utente utenteNuovo = new Utente("gabriele99", "gb9922", "gabriele", "gravotta", dataCreazione);
+		Utente utenteNuovo = new Utente("PPaolo", "P92FGT56", "Paolo", "Bendotti", dataCreazione);
 		utenteServiceInstance.inserisciNuovo(utenteNuovo);
 		if (utenteNuovo.getId() == null)
 			throw new RuntimeException("testModificaStatoUtente fallito: utente non inserito ");
 
 		// proviamo a passarlo nello stato ATTIVO ma salviamoci il vecchio stato
 		StatoUtente vecchioStato = utenteNuovo.getStato();
-		utenteNuovo.setStato(StatoUtente.ATTIVO);
+		utenteNuovo.setStato(StatoUtente.DISABILITATO);
 		utenteServiceInstance.aggiorna(utenteNuovo);
 
 		if (utenteNuovo.getStato().equals(vecchioStato))
@@ -271,7 +273,7 @@ public class ManyToManyTest {
 		System.out.println(".......testContaQuantiUtentiConIlRuoloAdmin fine: PASSED.............");
 	}
 	
-	public static void tesTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri(UtenteService utenteService) throws Exception{
+	public static void testTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri(UtenteService utenteService) throws Exception{
 		System.out.println(".......tesTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri inizio: .............");
 		
 		if(utenteService.listAll().size() == 0)
@@ -283,6 +285,23 @@ public class ManyToManyTest {
 		}
 		
 		System.out.println(".......tesTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri fine: PASSED.............");
+	}
+	
+	public static void testTrovaTuttiGliUtentiConLoStatoDisabilitatoECheSonoAdmin(UtenteService utenteService) throws Exception{
+		System.out.println(".......testTrovaTuttiGliUtentiConLoStatoDisabilitatoECheSonoAdmin inizio: .............");
+		
+		if(utenteService.listAll().size() == 0)
+			throw new RuntimeException("Non ci sono Utenti nel DB");
+		
+		List<Utente> listaUtenti = utenteService.trovaTuttiGliUtentiConLoStatoDisabilitatoECheSonoAdmin();
+		for (Utente utenteItem : listaUtenti) {
+			System.out.println(utenteItem.getNome());
+		}
+		
+		
+		
+		
+		System.out.println(".......testTrovaTuttiGliUtentiConLoStatoDisabilitatoECheSonoAdmin fine: PASSED.............");
 	}
 
 }
