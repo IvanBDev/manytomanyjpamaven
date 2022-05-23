@@ -50,7 +50,9 @@ public class ManyToManyTest {
 			
 			//testTrovaTuttiGliUtentiRegistratiAGiugno(utenteServiceInstance);
 			
-			testContaQuantiUtentiConIlRuoloAdmin(utenteServiceInstance);
+			//testContaQuantiUtentiConIlRuoloAdmin(utenteServiceInstance);
+			
+			tesTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri(utenteServiceInstance);
 			
 			
 		} catch (Throwable e) {
@@ -267,6 +269,22 @@ public class ManyToManyTest {
 		
 		
 		System.out.println(".......testContaQuantiUtentiConIlRuoloAdmin fine: PASSED.............");
+	}
+	
+	public static void tesTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri(UtenteService utenteService) throws Exception{
+		System.out.println(".......tesTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri inizio: .............");
+		
+		if(utenteService.listAll().size() == 0)
+			throw new RuntimeException("Non ci sono Utenti nel DB");
+		
+		List<Utente> listaUtenti = utenteService.trovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri();
+		for (Utente utenteItem : listaUtenti) {
+			System.out.println(utenteItem.getNome());
+		}
+		
+		
+		
+		System.out.println(".......tesTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri fine: PASSED.............");
 	}
 
 }
