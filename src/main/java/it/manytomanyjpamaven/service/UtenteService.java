@@ -28,6 +28,8 @@ public interface UtenteService {
 	public List<Utente> trovaTuttiGliUtentiRegistratiAGiugno() throws Exception;
 	
 	public int contaQuantiUtentiConIlRuoloAdmin() throws Exception;
+	
+	public List<Utente> findAllUsersWithPasswordLenghtEqualsTo8Characters() throws Exception;
 
 	// per injection
 	public void setUtenteDAO(UtenteDAO utenteDAO);
