@@ -93,8 +93,8 @@ public class UtenteDAOImpl implements UtenteDAO {
 
 	@Override
 	public List<Utente> findAllUsersWithStatusDisabledIfThereAreAdmins() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Utente> query = entityManager.createQuery("SELECT u FROM Utente u JOIN u.ruoli r WHERE u.stato = 'DISABILITATO' AND r.descrizione = 'Administrator'", Utente.class);
+		return query.getResultList();
 	}
 
 }

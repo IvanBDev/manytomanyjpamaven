@@ -282,8 +282,6 @@ public class ManyToManyTest {
 			System.out.println(utenteItem.getNome());
 		}
 		
-		
-		
 		System.out.println(".......tesTtrovaTuttiGliUtentiConLaPasswordMinoreDi8Caratteri fine: PASSED.............");
 	}
 
