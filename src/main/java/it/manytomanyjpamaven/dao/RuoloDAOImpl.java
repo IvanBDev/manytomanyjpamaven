@@ -64,4 +64,11 @@ public class RuoloDAOImpl implements RuoloDAO {
 		return query.getResultStream().findFirst().orElse(null);
 	}
 
+	@Override
+	public List<Ruolo> findAllByDistinctDescriptionOfAssociateUsers() throws Exception {
+		// TODO Auto-generated method stub
+		TypedQuery<Ruolo> qury = entityManager.createQuery("SELECT DISTINCT r.descrizione FROM Ruolo r  LEFT JOIN r.utente u", Ruolo.class);
+		return qury.getResultList();
+	}
+
 }

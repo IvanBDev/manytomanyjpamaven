@@ -1,11 +1,13 @@
 package it.manytomanyjpamaven.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import it.manytomanyjpamaven.model.Ruolo;
+import it.manytomanyjpamaven.model.StatoUtente;
 import it.manytomanyjpamaven.model.Utente;
 
 public class UtenteDAOImpl implements UtenteDAO {
@@ -66,6 +68,30 @@ public class UtenteDAOImpl implements UtenteDAO {
 		TypedQuery<Utente> query = entityManager.createQuery("select u FROM Utente u left join fetch u.ruoli r where u.id = :idUtente",Utente.class);
 		query.setParameter("idUtente", id);
 		return query.getResultList().stream().findFirst().orElse(null);
+	}
+
+	@Override
+	public List<Utente> findAllByDateOfJune2021(Date dataInput) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Utente> countAllUsersWithStatusAdmin(StatoUtente statoInput) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Utente> findAllUsersWithPasswordLenghtEqualsTo8Characters(String password) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Utente> findAllUsersWithStatusDisabledIfThereAreAdmins(StatoUtente statoInput) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

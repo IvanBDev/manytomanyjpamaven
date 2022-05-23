@@ -1,5 +1,6 @@
 package it.manytomanyjpamaven.test;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -28,8 +29,8 @@ public class ManyToManyTest {
 			//testInserisciNuovoUtente(utenteServiceInstance);
 			//System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
-			//testCollegaUtenteARuoloEsistente(ruoloServiceInstance, utenteServiceInstance);
-			//System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
+			testCollegaUtenteARuoloEsistente(ruoloServiceInstance, utenteServiceInstance);
+			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
 			//testModificaStatoUtente(utenteServiceInstance);
 			//System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
@@ -43,7 +44,7 @@ public class ManyToManyTest {
 			
 			//testRimuoviRuolo(ruoloServiceInstance);
 			
-			testRimuoviUtente(utenteServiceInstance, ruoloServiceInstance);
+			//testRimuoviUtente(utenteServiceInstance, ruoloServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -80,19 +81,24 @@ public class ManyToManyTest {
 			UtenteService utenteServiceInstance) throws Exception {
 		System.out.println(".......testCollegaUtenteARuoloEsistente inizio.............");
 
-		Ruolo ruoloEsistenteSuDb = ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ROLE_ADMIN");
+		Ruolo ruoloEsistenteSuDb = ruoloServiceInstance.cercaPerDescrizioneECodice("Classic User", "ROLE_CLASSIC_USER");
 		if (ruoloEsistenteSuDb == null)
 			throw new RuntimeException("testCollegaUtenteARuoloEsistente fallito: ruolo inesistente ");
+		
+		Date dataCreazione = null;
+		dataCreazione =  new SimpleDateFormat("dd/MM/yyyy").parse("26/07/2021");
 
 		// mi creo un utente inserendolo direttamente su db
-		Utente utenteNuovo = new Utente("mario.bianchi", "JJJ", "mario", "bianchi", new Date());
+		/*Utente utenteNuovo = new Utente("ivan.bendotti", "ib2002", "ivan", "bendotti", dataCreazione);
 		utenteServiceInstance.inserisciNuovo(utenteNuovo);
 		if (utenteNuovo.getId() == null)
-			throw new RuntimeException("testInserisciNuovoUtente fallito: utente non inserito ");
+			throw new RuntimeException("testInserisciNuovoUtente fallito: utente non inserito ");*/
+		
+		Utente utenteEsistente = utenteServiceInstance.listAll().get(3);
 
-		utenteServiceInstance.aggiungiRuolo(utenteNuovo, ruoloEsistenteSuDb);
+		utenteServiceInstance.aggiungiRuolo(utenteEsistente, ruoloEsistenteSuDb);
 		// per fare il test ricarico interamente l'oggetto e la relazione
-		Utente utenteReloaded = utenteServiceInstance.caricaUtenteSingoloConRuoli(utenteNuovo.getId());
+		Utente utenteReloaded = utenteServiceInstance.caricaUtenteSingoloConRuoli(utenteEsistente.getId());
 		if (utenteReloaded.getRuoli().size() != 1)
 			throw new RuntimeException("testInserisciNuovoUtente fallito: ruoli non aggiunti ");
 
@@ -101,9 +107,12 @@ public class ManyToManyTest {
 
 	private static void testModificaStatoUtente(UtenteService utenteServiceInstance) throws Exception {
 		System.out.println(".......testModificaStatoUtente inizio.............");
+		
+		Date dataCreazione = null;
+		dataCreazione =  new SimpleDateFormat("dd/MM/yyyy").parse("12/07/2021");
 
 		// mi creo un utente inserendolo direttamente su db
-		Utente utenteNuovo = new Utente("mario1.bianchi1", "JJJ", "mario1", "bianchi1", new Date());
+		Utente utenteNuovo = new Utente("gabriele99", "gb9922", "gabriele", "gravotta", dataCreazione);
 		utenteServiceInstance.inserisciNuovo(utenteNuovo);
 		if (utenteNuovo.getId() == null)
 			throw new RuntimeException("testModificaStatoUtente fallito: utente non inserito ");
