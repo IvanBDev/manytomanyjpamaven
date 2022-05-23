@@ -87,7 +87,8 @@ public class UtenteDAOImpl implements UtenteDAO {
 	@Override
 	public List<Utente> findAllUsersWithPasswordLenghtEqualsTo8Characters() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Utente> query = entityManager.createQuery("FROM Uente u WHERE LENGTH(u.password) < 8", Utente.class);
+		return query.getResultList();
 	}
 
 	@Override

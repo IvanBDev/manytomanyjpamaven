@@ -50,6 +50,8 @@ public class ManyToManyTest {
 			
 			//testTrovaTuttiGliUtentiRegistratiAGiugno(utenteServiceInstance);
 			
+			testContaQuantiUtentiConIlRuoloAdmin(utenteServiceInstance);
+			
 			
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -253,6 +255,18 @@ public class ManyToManyTest {
 		}
 		
 		System.out.println(".......testTrovaTuttiGliUtentiRegistratiAGiugno fine: PASSED.............");
+	}
+	
+	public static void testContaQuantiUtentiConIlRuoloAdmin(UtenteService utenteService) throws Exception{
+		System.out.println(".......testContaQuantiUtentiConIlRuoloAdmin inizio: .............");
+		
+		if(utenteService.listAll().size() == 0)
+			throw new RuntimeException("Non ci sono Utenti nel DB");
+		
+		System.out.println("Gli utenti con lo status Administrator sono: "+ utenteService.contaQuantiUtentiConIlRuoloAdmin());
+		
+		
+		System.out.println(".......testContaQuantiUtentiConIlRuoloAdmin fine: PASSED.............");
 	}
 
 }
